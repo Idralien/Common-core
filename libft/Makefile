@@ -6,7 +6,7 @@
 #    By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 10:42:09 by brsantsc          #+#    #+#              #
-#    Updated: 2024/04/05 11:51:01 by brsantsc         ###   ########.fr        #
+#    Updated: 2024/04/15 10:42:53 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,22 +19,29 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 	ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 	ft_putnbr_fd.c ft_strchr.c
+SRCSB = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+	ft_lstmap.c
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a
 OBJS = ${SRCS:.c=.o}
+OBJSB = ${SRCSB:.c=.o}
 
 ${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
+bonus: ${NAME} ${OBJSB}
+	ar rcs ${NAME} ${OBJSB}
+
 all: ${NAME}
 
 clean:
-	rm -f ${OBJS}
+	rm -f ${OBJS} ${OBJSB}
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f ${NAME} ${bonus}
 
 re: fclean all
 
