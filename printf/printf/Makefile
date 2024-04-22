@@ -6,27 +6,59 @@
 #    By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 12:06:13 by brsantsc          #+#    #+#              #
-#    Updated: 2024/04/16 12:46:46 by brsantsc         ###   ########.fr        #
+#    Updated: 2024/04/22 14:44:58 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_putchar_fd.c
+# **************************************************************************** #
+#                                VARIABLES                                     #
+# **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libftprint.a
+RM = rm -f
+AR = ar rcs
+LIBFT_PATH = ./libft
+LIBFT = ${LIBFT_PATH}/libft.a
+
+# **************************************************************************** #
+#                                SOURCES                                       #
+# **************************************************************************** #
+
+HEADER = printf.h
+SRCS = ft_putunsigned.c ft_puthex.c ft_format.c \
+       ft_printf_char.c ft_printf_str.c ft_printf_ptr.c \
+       ft_printf_nbr.c ft_printf.c
+
 OBJS = ${SRCS:.c=.o}
 
-${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+# **************************************************************************** #
+#                                COMMANDS                                      #
+# **************************************************************************** #
 
-all: ${NAME}
+all: ${NAME} ${LIBFT}
+
+${NAME}: ${OBJS}
+	cp libft/libft.a ${NAME}
+	${AR} ${NAME} ${OBJS}
+	@echo "ft_printf Compiling SUCCESS!"
+
+${LIBFT}:
+	make -C ${LIBFT_PATH} all
+
+%.o: %.c ${HEADER}
+	${CC} -c ${CFLAGS} -I ./ $< -o $@
 
 clean:
-	rm -f ${OBJS}
+	${RM} ${OBJS}
+	make -C ${LIBFT_PATH} clean
+	@echo "ft_printf objects cleaned SUCCESS"
 
 fclean: clean
-	rm -f ${NAME}
+	make -C ${LIBFT_PATH} fclean
+	${RM} ${OBJS}
+	@echo "ft_printf executable files cleaned SUCCESS"
 
 re: fclean all
 
