@@ -6,7 +6,7 @@
 #    By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 12:06:13 by brsantsc          #+#    #+#              #
-#    Updated: 2024/04/22 14:44:58 by brsantsc         ###   ########.fr        #
+#    Updated: 2024/04/23 12:51:20 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-NAME = libftprint.a
+NAME = libftprintf.a
 RM = rm -f
 AR = ar rcs
 LIBFT_PATH = ./libft
@@ -37,7 +37,7 @@ OBJS = ${SRCS:.c=.o}
 #                                COMMANDS                                      #
 # **************************************************************************** #
 
-all: ${NAME} ${LIBFT}
+all: ${LIBFT} ${NAME}
 
 ${NAME}: ${OBJS}
 	cp libft/libft.a ${NAME}

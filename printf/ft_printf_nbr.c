@@ -6,15 +6,15 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:01:15 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/04/22 14:12:06 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:32:46 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int	printf_nbr(int n)
+int	ft_printf_nbr(int n)
 {
-	int			nb;
+	int				nb;
 	unsigned int	i;
 
 	nb = n;

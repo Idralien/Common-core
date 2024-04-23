@@ -6,17 +6,17 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:37:18 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/04/22 13:50:56 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:29:37 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static char	*make_str(unsigned int value, int *len)
 {
-	int			i;
+	char			*str;
+	unsigned int	i;
 	unsigned int	tmp;
-	char		*str;
 
 	i = 0;
 	tmp = value;
@@ -40,8 +40,6 @@ int	ft_printf_ptr(unsigned int value, int asc)
 	iptr = &i;
 	tmp_val = value;
 	print = make_str(value, iptr);
-	if (!print)
-		return (NULL);
 	while (tmp_val != 0 && i >= 0)
 	{
 		if ((tmp_val % 16) < 10)
@@ -52,10 +50,10 @@ int	ft_printf_ptr(unsigned int value, int asc)
 		i--;
 	}
 	i = ft_strlen(print);
-	i = i + printf_str("0x");
+	ft_printf_str("0x");
 	ft_putstr_fd(print, 1);
 	free(print);
 	if (value == 0)
-		i = i + printf_char('0');
+		ft_printf_char('0');
 	return (i);
 }

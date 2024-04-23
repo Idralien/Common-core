@@ -6,11 +6,11 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:23:22 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/04/22 13:26:04 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:09:50 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_printf_str(char *s)
 {
@@ -18,6 +18,6 @@ void	ft_printf_str(char *s)
 
 	i = 0;
 	if (!s)
-		return (NULL);
+		return ;
 	ft_putstr_fd(s, 1);
 }
