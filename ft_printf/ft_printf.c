@@ -11,21 +11,21 @@ void	ft_format(const char *format, void *arg)
 
 	i = 0;
 	if (format[i] == 'c')
-		ft_print_char((char)arg);
+		ft_print_char((long)arg);
 	else if (format[i] == 's')
 		ft_print_str((char *)arg);
 	else if (format[i] == 'p')
-		ft_print_ptr((int)arg, 87);
+		ft_print_ptr((unsigned long)arg, 87);
 	else if (format[i] == 'd' || format[i] == 'i')
-		ft_print_nbr((int)arg);
+		ft_print_nbr((long)arg);
 	else if (format[i] == 'u')
-		ft_print_unsigned((unsigned int)arg);
+		ft_print_unsigned((unsigned long)arg);
 	else if (format[i] == 'x' || format[i] == 'X')
 	{
 		if (format[i] == 'x')
-			ft_print_hex((int)arg, 87);
+			ft_print_hex((unsigned long)arg, 87);
 		else if (format[i] == 'X')
-			ft_print_hex((int)arg, 55);
+			ft_print_hex((unsigned long)arg, 55);
 	}
 }
 
@@ -41,10 +41,10 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			if (ft_strchr("cspdiuxX", str[i]))
-				ft_format(str[i], va_arg(args, (void *)));
-			i++;
+				ft_format(str, va_arg(args, void *));
 			else if (str[i] == '%')
 				ft_print_char('%');
+			i++;
 		}
 		else
 			ft_print_char(str[i]);

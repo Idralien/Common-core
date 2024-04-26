@@ -26,10 +26,10 @@ LIBFT = ${LIBFT_PATH}/libft.a
 #                                SOURCES                                       #
 # **************************************************************************** #
 
-HEADER = printf.h
-SRCS = ft_putunsigned.c ft_printhex.c \
-       ft_printf_char.c ft_printf_str.c ft_printf_ptr.c \
-       ft_printf_nbr.c ft_printf.c
+HEADER = ft_printf.h
+SRCS = ft_print_unsigned.c ft_print_hex.c \
+       ft_print_str.c ft_print_ptr.c \
+       ft_print_nbr.c ft_printf.c main.c
 
 OBJS = ${SRCS:.c=.o}
 

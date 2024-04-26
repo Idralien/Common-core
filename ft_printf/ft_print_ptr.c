@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static char     *make_string(unsigned int value, int *len)
+char     *make_string(unsigned int value, int *len)
 {
         int                             i;
         unsigned int    tmp;
@@ -18,7 +18,7 @@ static char     *make_string(unsigned int value, int *len)
         return (str);
 }
 
-int     ft_print_hex(unsigned int value, int ascii)
+int     ft_print_ptr(unsigned int value, int ascii)
 {
         unsigned int    tmp_value;
         char                    *print;
@@ -27,7 +27,7 @@ int     ft_print_hex(unsigned int value, int ascii)
 
         iptr = &i;
         tmp_value = value;
-        print = *make_string(value, iptr);
+        print = make_string(value, iptr);
         if (!print)
                 return (0);
         while (tmp_value != 0 && i >= 0)

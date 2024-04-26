@@ -9,12 +9,12 @@ int	ft_print_nbr(int n)
 	i = 1;
 	if (n < 0 && n != -2147483648)
 	{
-		nb = -n;
+		nbr = -n;
 		i++;
 	}
-	while (nb > 9)
+	while (nbr > 9)
 	{
-		nb = nb / 10;
+		nbr = nbr / 10;
 		i++;
 	}
 	ft_putnbr_fd(n, 1);

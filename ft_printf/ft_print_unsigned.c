@@ -1,9 +1,9 @@
 #include "ft_printf.h"
 
-static void	printout(unsigned int nb)
+void	print(unsigned int nb)
 {
 	if (nb > 9)
-		print_unsigned(nb / 10);
+		ft_print_unsigned(nb / 10);
 	if (nb <= 9)
 	{
 		ft_putchar_fd(nb + 48, 1);
@@ -12,11 +12,11 @@ static void	printout(unsigned int nb)
 	ft_putchar_fd((nb % 10) + 48, 1);
 }
 
-int	print_unsigned(unsigned int nb)
+int	ft_print_unsigned(unsigned int nb)
 {
 	unsigned int	i;
 
-	printout(nb);
+	print(nb);
 	i = 1;
 	while (nb > 9)
 	{
