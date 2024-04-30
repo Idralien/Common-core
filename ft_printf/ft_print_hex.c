@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/29 09:35:56 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/29 09:35:58 by brsantsc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char	*make_string(unsigned int value, int *len)
+static char	*make_string(unsigned int value, int *len)
 {
 	int				i;
 	unsigned int	tmp;

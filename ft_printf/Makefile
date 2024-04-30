@@ -6,7 +6,7 @@
 #    By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 12:06:13 by brsantsc          #+#    #+#              #
-#    Updated: 2024/04/24 12:04:55 by brsantsc         ###   ########.fr        #
+#    Updated: 2024/04/29 10:31:54 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ LIBFT = ${LIBFT_PATH}/libft.a
 
 HEADER = ft_printf.h
 SRCS = ft_print_unsigned.c ft_print_hex.c \
-       ft_print_str.c ft_print_ptr.c \
-       ft_print_nbr.c ft_printf.c main.c
+       ft_print_str.c ft_print_ptr.c ft_print_char.c \
+       ft_print_nbr.c ft_printf.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -39,16 +39,16 @@ OBJS = ${SRCS:.c=.o}
 
 all: ${LIBFT} ${NAME}
 
-${NAME}: ${OBJS}
-	cp libft/libft.a ${NAME}
-	${AR} ${NAME} ${OBJS}
-	@echo "ft_printf Compiling SUCCESS!"
+%.o: %.c ${HEADER}
+	${CC} -c ${CFLAGS} -I ./ $< -o $@
 
 ${LIBFT}:
 	make -C ${LIBFT_PATH} all
 
-%.o: %.c ${HEADER}
-	${CC} -c ${CFLAGS} -I ./ $< -o $@
+${NAME}: ${OBJS}
+	cp libft/libft.a ${NAME}
+	${AR} ${NAME} ${OBJS}
+	@echo "ft_printf Compiling SUCCESS!"
 
 clean:
 	${RM} ${OBJS}
