@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:14:25 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/05/14 10:58:18 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:19:04 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ char	*ft_line(char *buffer)
 		i++;
 	}
 	if (buffer[i] != '\0' && buffer[i] == '\n')
-		line[i++] = '\n';
+	{
+		line[i] = '\n';
+		i++;
+	}
 	return (line);
 }
 
@@ -87,7 +90,7 @@ char	*read_file(int fd, char *res)
 			free(buffer);
 			return (NULL);
 		}
-		buffer[byte_read] = 0;
+		buffer[byte_read] = '\0';
 		res = ft_free(res, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
