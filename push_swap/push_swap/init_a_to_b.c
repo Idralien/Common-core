@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_nodes_a.c                                     :+:      :+:    :+:   */
+/*   init_a_to_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:57:25 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/04 12:25:48 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:01:29 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void    current_index(t_stack_node *stack)
+{
+    int i;
+    int median;
+
+    i = 0;
+    if (!stack)
+        return ;
+}
 void    current_index(t_stack_node *stack)
 {
     int i;

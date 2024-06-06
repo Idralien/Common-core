@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:55:00 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/04 14:55:02 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:51:00 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 int	error_syntax(char *str_n)
 {
 	if (!(*str_n == '+'
-			|| *str_n == '-'
-			|| (*str_n >= '0' && *str_n <= '9')))
+			|| *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
 		return (1);
-	if ((*str_n == '+'
-			|| *str_n == '-')
+	if ((*str_n == '+' || *str_n == '-')
 		&& !(str_n[1] >= '0' && str_n[1] <= '9'))
 		return (1);
 	while (*++str_n)
@@ -67,4 +65,3 @@ void	free_errors(t_stack_node **a)
 	ft_printf("Error\n");
 	exit(1);
 }
-
