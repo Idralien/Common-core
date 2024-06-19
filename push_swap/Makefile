@@ -3,79 +3,97 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+         #
+#    By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/04 15:00:29 by brsantsc          #+#    #+#              #
-#    Updated: 2024/06/06 12:40:56 by brsantsc         ###   ########.fr        #
+#    Created: 2024/06/18 08:30:04 by brsantsc          #+#    #+#              #
+#    Updated: 2024/06/18 08:40:23 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
-#									NAME									   #
+# 								NAME										   #
 # **************************************************************************** #
-NAME				= push_swap
+
+NAME = push_swap
 
 # **************************************************************************** #
 # 								DIRECTORIES									   #
 # **************************************************************************** #
-LIBFT				= ./libft/libft.a
-INC					= inc/
-SRC_DIR				= srcs/
-OBJ_DIR				= obj/
+
+INCLUDES = includes
+SRCS_DIR = src
+OBJS_DIR = objs
+LIBFT = libft
 
 # **************************************************************************** #
-# 							COMPILER AND CFLAGS								   #
+# 								COMPILER AND CFLAGS							   #
 # **************************************************************************** #
-CC					= gcc
-CFLAGS				= -Wall -Werror -Wextra -I
-RM					= rm -f
 
-# Source Files
-COMMANDS_DIR		=	$(SRC_DIR)commands/push.c \
-						$(SRC_DIR)commands/rev_rotate.c \
-						$(SRC_DIR)commands/rotate.c \
-						$(SRC_DIR)commands/sort_stacks.c \
-						$(SRC_DIR)commands/sort_three.c \
-						$(SRC_DIR)commands/swap.c
-
-PUSH_SWAP_DIR		=	$(SRC_DIR)push_swap/handle_errors.c \
-						$(SRC_DIR)push_swap/init_a_to_b.c \
-						$(SRC_DIR)push_swap/init_b_to_a.c \
-						$(SRC_DIR)push_swap/push_swap.c \
-						$(SRC_DIR)push_swap/split.c \
-						$(SRC_DIR)push_swap/stack_init.c \
-						$(SRC_DIR)push_swap/stack_utils.c
-
-SRCS 				= $(COMMANDS_DIR) $(PUSH_SWAP_DIR)
-
-OBJ 				= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
+RM = rm -rf
 
 # **************************************************************************** #
-#								COMMANDS                                       #
+# 								COLOURS										   #
 # **************************************************************************** #
-start:				
-					@make all
 
-$(LIBFT):
-					@make -C ./libft
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
 
-all: 				$(NAME)
 
-$(NAME): 			$(OBJ) $(LIBFT)
-					@$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+# **************************************************************************** #
+# 								SOURCES										   #
+# **************************************************************************** #
 
-$(OBJ_DIR)%.o:		$(SRC_DIR)%.c 
-					@mkdir -p $(@D)
-					@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+SOURCES = big_sort.c checks.c cost_utils.c free.c input.c \
+	  move_utils.c push.c push_swap.c rev_rotate.c \
+	  rotate.c sort_three.c stack.c swap.c libft_functions.c
+
+
+# **************************************************************************** #
+# 								COMMANDS									   #
+# **************************************************************************** #
+
+SRCS = $(addprefix $(SRCS_DIR)/,$(SOURCES))
+OBJS = $(addprefix $(OBJS_DIR)/,$(SOURCES:.c=.o))
+
+all: lib tmp $(NAME)
+
+lib:
+	@echo "$(GREEN)Creating library$(BLUE)"
+	@make -C $(LIBFT)
+
+tmp:
+	@mkdir -p objs
+
+ $(NAME): $(OBJS)
+	$(CC) $(FLAGS) -L $(LIBFT) -o $@ $^ -lft -lm
+	@echo "$(GREEN)Project successfully compiled"
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCLUDES)/$(NAME).h
+	@$(CC) $(FLAGS) -c -o $@ $<
+	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(WHITE)"
 
 clean:
-					@$(RM) -r $(OBJ_DIR)
-					@make clean -C ./libft
+	@echo "$(RED)Deleting Objects$(BLUE)"
+	@make clean -C $(LIBFT)
+	@rm -rf $(OBJS_DIR)
+	@echo "$(Green)DONE"
 
-fclean: 			clean
-					@$(RM) $(NAME)
-					@$(RM) $(LIBFT)
+fclean:
+	@echo "$(RED)Deleting with fclean$(BLUE)"
+	@rm -rf $(OBJS_DIR)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
+	@echo "$(RED)All the files are cleaned"
 
-re: 				fclean all
+re: fclean all
 
-.PHONY: 			start all clean fclean re
+.PHONY: tmp, re, fclean, clean
