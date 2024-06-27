@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/04 11:48:59 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/04 11:49:05 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/libft.h"
 
-typedef struct s_buffer
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	size_t	i;
 
-
-#endif
+	i = 0;
+	if (!dest && !src)
+		return (NULL);
+	if (dest != src)
+	{
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	return (dest);
+}

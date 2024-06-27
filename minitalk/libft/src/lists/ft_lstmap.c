@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/15 09:44:35 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/15 09:48:50 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/libft.h"
 
-typedef struct s_buffer
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	t_list	*node;
+	t_list	*tmp;
 
-
-#endif
+	node = NULL;
+	while (lst != NULL)
+	{
+		tmp = ft_lstnew((*f)(lst->content));
+		if (!tmp)
+		{
+			ft_lstclear(&node, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&node, tmp);
+		lst = lst->next;
+	}
+	return (node);
+}

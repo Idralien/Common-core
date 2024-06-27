@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/29 09:36:08 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/29 09:36:10 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/ft_printf.h"
 
-typedef struct s_buffer
+int	ft_print_nbr(int n)
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	int				nbr;
+	unsigned int	i;
 
-
-#endif
+	nbr = n;
+	i = 1;
+	if (n < 0 && n != -2147483648)
+	{
+		nbr = -n;
+		i++;
+	}
+	while (nbr > 9)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	ft_putnbr_fd(n, 1);
+	if (n == -2147483648)
+		return (11);
+	return (i);
+}

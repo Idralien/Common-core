@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/04 11:53:05 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/04 13:03:47 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/libft.h"
 
-typedef struct s_buffer
+char	*ft_strnstr(const char *str, const char *needle, size_t n)
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	size_t	i;
+	size_t	j;
 
-
-#endif
+	i = 0;
+	j = 0;
+	if (needle[j] == '\0')
+		return ((char *)str);
+	while (str[i] != '\0')
+	{
+		j = 0;
+		while (str[i + j] == needle[j] && str[i + j] != '\0' && i + j < n)
+		{
+			if (needle[j + 1] == '\0')
+				return ((char *)str + i);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

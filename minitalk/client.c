@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 17:34:20 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/26 17:44:22 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/06/27 12:11:10 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/06/27 12:46:26 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ int	main(int argc, char *argv[])
 {
 	if (argc != 3)
 	{
-		fprintf(stderr, "Usage: %s <server_pid> <message>\n", argv[0]);
+		ft_printf(stderr, "Usage: %s <server_pid> <message>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
-	pid_t server_pid = (pid_t)atoi(argv[1]);
+	pid_t server_pid = (pid_t)ft_atoi(argv[1]);
 	const char	*message = argv[2];
 	send_string(server_pid, message);
 
 	return 0;
 }
+

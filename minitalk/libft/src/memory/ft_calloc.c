@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/04 11:46:38 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/04 11:46:50 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/libft.h"
 
-typedef struct s_buffer
+void	*ft_calloc(size_t counter, size_t size)
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	void	*ptr;
 
-
-#endif
+	ptr = (void *)malloc(counter * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, counter * size);
+	return (ptr);
+}

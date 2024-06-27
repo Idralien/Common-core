@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/15 09:02:54 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/15 09:09:14 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/libft.h"
 
-typedef struct s_buffer
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	t_list	*tmp;
 
-
-#endif
+	if (*lst != NULL)
+	{
+		tmp = *lst;
+		*lst = new;
+		new->next = tmp;
+	}
+	else
+		*lst = new;
+}

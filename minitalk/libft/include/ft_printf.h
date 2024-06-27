@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/29 09:35:47 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/29 09:35:49 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdarg.h>
 # include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+# include "libft.h"
 
-typedef struct s_buffer
-{
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
-
+int		ft_printf(const char *str, ...);
+int		ft_print_hex(unsigned int value, int ascii);
+int		ft_print_nbr(int n);
+int		ft_print_ptr(unsigned long value, int ascii);
+int		ft_print_str(char *str);
+int		ft_print_unsigned(unsigned int nb);
+int		ft_print_char(int c);
 
 #endif

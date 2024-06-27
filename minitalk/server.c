@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 17:18:37 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/26 17:34:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/06/27 12:12:18 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/06/27 12:46:23 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	handle_signal(int signal)
 	{
 		if (g_buffer.char_buffer == '\0') //Null character indicates end of message
 		{
-			printf("\n");
+			ft_printf("\n");
 		}
 		else
 		{
-			putchar(g_buffer.char_buffer);
+			ft_putchar_fd(g_buffer.char_buffer);
 			fflush(stdout);
 		}
 		g_buffer.char_buffer = 0; //Reset the character buffer for the next character
@@ -56,7 +56,7 @@ int	main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	printf("Server PID: %d\n", getpid());
+	ft_printf("Server PID: %d\n", getpid());
 
 	while (1)
 	{

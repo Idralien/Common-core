@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:12:01 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/06/27 12:12:09 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/04/29 09:36:34 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/04/29 09:36:35 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <unistd.h>
-# include <string.h>
+#include "../../include/ft_printf.h"
 
-typedef struct s_buffer
+void	print(unsigned int nb)
 {
-	unsigned char	char_buffer;
-	int	bit_count;
-}	t_buffer;
+	if (nb > 9)
+		ft_print_unsigned(nb / 10);
+	if (nb <= 9)
+	{
+		ft_putchar_fd(nb + 48, 1);
+		return ;
+	}
+	ft_putchar_fd((nb % 10) + 48, 1);
+}
 
+int	ft_print_unsigned(unsigned int nb)
+{
+	unsigned int	i;
 
-#endif
+	print(nb);
+	i = 1;
+	while (nb > 9)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i);
+}
