@@ -1,0 +1,38 @@
+/* XPM */
+static char *e9c772a1d94443d8bb7be5072692645c8OXbFlZ446IXizOq[] = {
+/* columns rows colors chars-per-pixel */
+"96 24 8 1 ",
+"  c None",
+". c #382121",
+"X c #A04345",
+"o c #BC4D4F",
+"O c #4B9A27",
+"+ c #D8B68F",
+"@ c #FFD7A8",
+"# c white",
+/* pixels */
+"                                                                                                ",
+"                                                                                                ",
+"                                                                                                ",
+"                                  ............            ............                          ",
+"        ............             ..XXXXooooooo.          ..XXXXooooooo.          ............   ",
+"       ..XXXXooooooo.           .O.XXXXXooXXXo.         .O.XXXXXooXXXo.         ..XXXXooooooo.  ",
+"      .O.XXXXXooXXXo.           .O.X###Xo.ooo..         .O.X###Xo.ooo..        .O.XXXXXooXXXo.  ",
+"      .O.X###Xo.ooo..           ...X###Xoooooo.         ...X###Xoooooo.        .O.X###Xo.ooo..  ",
+"      ...X###Xoooooo.            .O.###Xoooooo.          .O.###Xoooooo.        ...X###Xoooooo.  ",
+"       .O.###Xoooooo.            .O.XXXXoooooo.          .O.XXXXoooooo.         .O.###Xoooooo.  ",
+"       .O.XXXXoooooo.            ...XXXXXo.....          ...XXXXXo.....         .O.XXXXoooooo.  ",
+"       ...XXXXXo.....            ..XXoooo.               ..XXoooo.              ...XXXXXo.....  ",
+"       ..XXoooo.                  .X+@@@@.                .X+@@@@.              ..XXoooo.       ",
+"        .X+@@@@.               ...X+@@@@.              ...X+@@@@.                .X+@@@@.       ",
+"      ...X+@@@@.               .ooX+@@@@.              .ooX+@@@@.             ...X+@@@@.        ",
+"      .ooX+@@@@.               ..XXXo++o.              ..XXXo++o.             .ooX+@@@@.        ",
+"      ..XXXo++o.                ..Xooooo.               ..Xooooo.             ..XXXo++o.        ",
+"       ..Xooooo.                  .Xoo..                 .Xooo..               ..Xooooo.        ",
+"         .XooX.                   .X..                   .Xo..                   .Xoo..         ",
+"          .XX.                    ..                     .X.                     .X..           ",
+"           ..                                            ..                      ..             ",
+"                                                                                                ",
+"                                                                                                ",
+"                                                                                                "
+};
