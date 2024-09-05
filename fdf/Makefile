@@ -6,7 +6,7 @@
 #    By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 14:32:54 by brsantsc          #+#    #+#              #
-#    Updated: 2024/08/22 18:19:08 by brsantsc         ###   ########.fr        #
+#    Updated: 2024/08/23 11:11:29 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ tmp:
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 	@$(CC) $(CFLAGS) $(INCS) -c -o $@ $<
-	@echo "$(GREEN)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(WHITE)"
+	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(WHITE)"
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $@ $^ $(FMS)

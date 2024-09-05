@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:27:58 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/08/22 14:28:10 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:05:50 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@ void	display_controls(t_fdf *fdf)
 
 	ctls.x = 20;
 	ctls.y = 20;
-	ctls.color = 0xFFFFFF;
+	ctls.colour = 0xFFFFFF;
 	ctls.spacing = 30;
 	draw_background(fdf, 300, 250, 0x000000);
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y, ctls.color, "Controls:");
+		ctls.x, ctls.y, ctls.colour, "Controls:");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y + ctls.spacing, ctls.color, "Zoom In: +/-");
+		ctls.x, ctls.y + ctls.spacing, ctls.colour, "Zoom In: +/-");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y + 3 * ctls.spacing, ctls.color, "Depth: W/S");
+		ctls.x, ctls.y + 3 * ctls.spacing, ctls.colour, "Depth: W/S");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y + 5 * ctls.spacing, ctls.color, "Rotate: A/D");
+		ctls.x, ctls.y + 5 * ctls.spacing, ctls.colour, "Rotate: A/D");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y + 7 * ctls.spacing, ctls.color, "Move: Arrow keys");
+		ctls.x, ctls.y + 7 * ctls.spacing, ctls.colour, "Move: Arrow keys");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y + 8 * ctls.spacing, ctls.color, "Change Color: C");
+		ctls.x, ctls.y + 8 * ctls.spacing, ctls.colour, "Change Color: C");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr,
-		ctls.x, ctls.y + 9 * ctls.spacing, ctls.color, "Exit: ESC");
+		ctls.x, ctls.y + 9 * ctls.spacing, ctls.colour, "Exit: ESC");
 }
 
 void	draw(t_fdf *fdf)

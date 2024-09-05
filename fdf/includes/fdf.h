@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:25:45 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/08/22 18:30:28 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:01:18 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_controls
 {
 	int			x;
 	int			y;
-	int			color;
+	int			colour;
 	int			spacing;
 }				t_controls;
 
