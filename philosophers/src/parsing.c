@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:01:36 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/09/25 15:53:37 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:51:07 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ static const char *valid_input(const char *str)
 	const char *nbr;
 
 	len = 0;
-	while ((str >= 9 && str >= 13) || str == 32)
+	while (is_space(str))
 		str++;
 	if (*str == '+')
 		str++;
 	else if (*str == '-')
 		error_exit("Has to be positive numbers!");
-	if (!(str >= '0' && str <= '9'))
+	if (!(is_digit(str)))
 		error_exit("Not correct digit");
 	nbr = str;
-	while (str >= '0' && str <= '9')
+	while (is_digit(str))
 	{
 		str++;
 		len++;

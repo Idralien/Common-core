@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:14:55 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/09/25 15:01:23 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:45:34 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		error_exit("Wrong input:\n"GREEN"Correct input is ./philo 5 800 200 200 [5]");
+		error_exit("Wrong input:\n"GREEN
+				"Correct input is ./philo 5 800 200 200 [5]");
 	}
 }
