@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:44:20 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/10/01 13:50:42 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:35:15 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,31 @@ void	ft_putstr(char *str)
 	write (1, "\n", 1);
 }
 
-long long time_now(void)
+long long	current_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
+
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	print_status(t_philo *philo, const char *status)
+{
+	pthread_mutex_lock(philo->print_mutex);
+	printf("%lld %d %s\n", current_time(), philo->id + 1, status);
+	pthread_mutex_unlock(philo->print_mutex);
+}
+
+void	precise_sleep(long long duration_in_usec)
+{
+	long long	start_time;
+	long long	elapsed_time;
+
+	start_time = current_time();
+	elapsed_time = 0;
+	while (elapsed_time < duration_in_usec)
+	{
+		elapsed_time = (current_time() - start_time) * 1000;
+		usleep(1000);
+	}
 }

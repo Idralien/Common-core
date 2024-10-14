@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 12:02:11 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/10/01 12:10:47 by brsantsc         ###   ########.fr       */
+/*   Created: 2024/10/07 12:15:31 by brsantsc          #+#    #+#             */
+/*   Updated: 2024/10/09 14:35:05 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#include "philo.h"
 
-void	mem(t_data *data)
+void	*memory_allocation(size_t mem_size)
 {
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->nbr_of_philos);
-	data->philos = malloc(sizeof(t_philo) * data->nbr_of_philos);
-	data->threads = malloc(sizeof(pthread_t) * data->nbr_of_philos);
+	void	*mall_place;
+
+	mall_place = malloc(mem_size);
+	if (NULL == mall_place)
+		ft_putstr("Error malloc");
+	return (mall_place);
 }
 
-void	mem_free(t_data *data)
+void	memory_free(t_data *data)
 {
 	int	i;
 

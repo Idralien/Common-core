@@ -6,14 +6,14 @@
 #    By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 12:14:28 by brsantsc          #+#    #+#              #
-#    Updated: 2024/10/01 12:23:56 by brsantsc         ###   ########.fr        #
+#    Updated: 2024/10/08 16:14:45 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME  = philo
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g
 RM = rm -rf
 
 DEF_COLOR = \033[0;39m
@@ -26,18 +26,25 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SOURCES = memory.c utils.c main.c
+SOURCES = main.c memory.c utils.c ft_atol.c \
+					init.c routine.c
 
-$(NAME):
-	$(CC) $(CFLAGS) -L
+OBJS = $(SOURCES:.c=.o)
+
+$(NAME):	$(OBJS)
+	$(CC) $(CFLAGS) $(OBJS)
 	@echo "$(GREEN)Project successfully compiled$(DEF_COLOR)"
 
+all:		$(NAME)
+
 clean:
+	@$(RM) $(OBJS)
 	@echo "$(RED)Deleting Objects$(DEF_COLOR)"
 
-fclean:
+fclean:	clean
+	@$(RM) $(NAME)
 	@echo "$(RED)Deleting with fclean$(DEF_COLOR)"
 
-re: fclean $(NAME)
+re: fclean all
 
-.PHONY: re, clean, fclean
+.PHONY: re clean fclean all

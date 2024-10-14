@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:33:06 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/10/01 12:11:33 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/10/10 00:40:44 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,42 @@
 
 typedef struct s_philo
 {
-	int	id;
-	int	meals_eaten;
-	long long last_meal_time;
-	int	total_meals;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*print_mutex;
+	int						id;
+	int						meals_eaten;
+	int						total_meals;
+	int						time_to_die;
+	int						time_to_eat;
+	int						time_to_sleep;
+	long long				last_meal_time;
+	pthread_mutex_t			*left_fork;
+	pthread_mutex_t			*right_fork;
+	pthread_mutex_t			*print_mutex;
 }	t_philo;
 
 typedef struct s_data
 {
-	int	nbr_of_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print_mutex;
-	t_philo	*philos;
-	pthread_t	*threads;
+	int						nbr_of_philos;
+	int						time_to_die;
+	int						time_to_eat;
+	int						time_to_sleep;
+	int						must_eat;
+	t_philo					*philos;
+	pthread_mutex_t			*forks;
+	pthread_mutex_t			print_mutex;
+	pthread_t				*threads;
 }	t_data;
 
-void	ft_putstr(char *str);
-void	mem(t_data *data);
-void	mem_free(t_data *data);
+void			ft_putstr(char *str);
+void			print_status(t_philo *phil, const char *status);
+void			init(t_data *data, int argc, char **argv);
+void			init_philos(t_data *data);
+void			*memory_allocation(size_t mem_size);
+void			memory_free(t_data *data);
+void			*philos_routine(void *arg);
+void			*monitoring_routine(void *arg);
+void			precise_sleep(long long duration_in_usec);
+int				all_philos_done(t_data *data);
+long			ft_atol(const char *str);
+long long		current_time(void);
 
 #endif
