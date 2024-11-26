@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:42:05 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/26 12:15:00 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/20 03:04:14 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 	while (i < data.nbr_of_philos)
 	{
 		pthread_join(data.threads[i], NULL);
-		i++;
 	}
 	pthread_join(monitor_thread, NULL);
 	memory_free(&data);

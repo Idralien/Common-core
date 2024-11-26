@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:42:05 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/26 12:15:00 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:58:40 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < data.nbr_of_philos)
 	{
+		printf("Main: Waiting for Philo %d to finish\n", i + 1);
 		pthread_join(data.threads[i], NULL);
+		printf("Main: Philo %d thread joined\n", i + 1);
 		i++;
 	}
 	pthread_join(monitor_thread, NULL);
+	printf("Main: Monitor thread joined\n");
 	memory_free(&data);
 	return (0);
 }

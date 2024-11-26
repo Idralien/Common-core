@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:48:52 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/20 03:07:52 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:15:03 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	*monitoring_routine(void *arg)
 		}
 		if (data->must_eat == 0 || all_philos_done(data))
 		{
-			printf("Philos ate %d times. Routine finished\n", data->must_eat);
+//			printf("Philos ate %d times. Routine finished\n", data->must_eat);
 			break;
 		}
 		usleep(100);

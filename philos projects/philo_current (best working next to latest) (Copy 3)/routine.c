@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:48:52 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/20 03:07:52 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:07:43 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,33 @@ void	forks(void *arg);
 void	*philos_routine(void *arg)
 {
 	t_philo	*philo;
+	t_data *data;
 
 	philo = (t_philo *)arg;
+	data = (t_data *)arg;
 	if (philo->id % 2 == 0)
 		precise_sleep(10);
 	while (1)
 	{
+		pthread_mutex_lock(&data->stop_mutex);
+		if (data->stop_sim)
+		{
+			pthread_mutex_unlock(&data->stop_mutex);
+			printf("Philo %d: stop sim = %d\n", philo->id, data->stop_sim);
+			break;
+		}
+		pthread_mutex_unlock(&data->stop_mutex);
 		print_status(philo, "is thinking");
 		forks(philo);
 		mutexes(philo);
 		if (philo->total_meals != -1
 			&& philo->meals_eaten >= philo->total_meals)
-			break ;
+		{
+			printf("Philo %d: finished eating %d meals\n", philo->id, philo->meals_eaten);
+			break;
+		}
 	}
+	printf("Philo %d: exit routine\n", philo->id);
 	return (NULL);
 }
 
@@ -56,15 +70,26 @@ void	*monitoring_routine(void *arg)
 			{
 				pthread_mutex_lock(&data->print_mutex);
 				printf("%lld %d died\n", current_time() - data->start_time, i + 1);
+				data->stop_sim = 1;
+				printf("Monitor: stop sim set to %d\n", data->stop_sim);
 				pthread_mutex_unlock(&data->print_mutex);
 				data->must_eat = 0;
 				return NULL;
 			}
 			i++;
 		}
+		pthread_mutex_lock(&data->philos_done_mutex);
+		if (data->philos_done == data->nbr_of_philos)
+		{
+			pthread_mutex_unlock(&data->philos_done_mutex);
+			break;
+		}
 		if (data->must_eat == 0 || all_philos_done(data))
 		{
-			printf("Philos ate %d times. Routine finished\n", data->must_eat);
+			printf("Monitor: All meals completed. Setting stop_sim = 1\n");
+			pthread_mutex_lock(&data->stop_mutex);
+			data->stop_sim = 1;
+			pthread_mutex_unlock(&data->stop_mutex);
 			break;
 		}
 		usleep(100);
@@ -79,10 +104,15 @@ int	all_philos_done(t_data *data)
 	i = 0;
 	while (i < data->nbr_of_philos)
 	{
-		if (data->philos[i].meals_eaten < data->must_eat)
+		if (data->must_eat != -1 && data->philos[i].meals_eaten < data->must_eat)
+		{
+			printf("Monitor: Philo %d has not eaten enough (%d/%d)\n",
+					i + 1, data->philos[i].meals_eaten, data->must_eat);
 			return (0);
+		}
 		i++;
 	}
+	printf("Monitor: All philos have eaten the required number of meals\n");
 	return (1);
 }
 

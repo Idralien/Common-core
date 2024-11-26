@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:50:56 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/25 14:02:06 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/20 00:20:12 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	init(t_data *data, int argc, char **argv)
 		i++;
 	}
 	pthread_mutex_init(&data->print_mutex, NULL);
-	data->philos_done = 0;
-	pthread_mutex_init(&data->philos_done_mutex, NULL);
 }
 
 void	init_philos(t_data *data)

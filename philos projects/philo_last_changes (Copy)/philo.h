@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:33:06 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/25 14:00:30 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:46:42 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	int						time_to_eat;
 	int						time_to_sleep;
 	int						time_to_think;
+	int						notified;
 	long long				last_meal_time;
 	long long				start_time;
 	pthread_mutex_t			*left_fork;

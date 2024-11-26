@@ -6,7 +6,7 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:33:06 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/25 14:00:30 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:16:22 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ typedef struct s_data
 	int						time_to_sleep;
 	int						must_eat;
 	int						philos_done;
+	int						stop_sim;
 	long long				start_time;
 	t_philo					*philos;
 	pthread_mutex_t			*forks;
 	pthread_mutex_t			print_mutex;
 	pthread_t				*threads;
 	pthread_mutex_t	philos_done_mutex;
+	pthread_mutex_t	stop_mutex;
 }	t_data;
 
 void			ft_putstr(char *str);

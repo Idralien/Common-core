@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 12:15:31 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/20 00:13:28 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:00:42 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	memory_free(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->philos_done_mutex);
+	pthread_mutex_destroy(&data->stop_mutex);
 	if (data->forks)
 		free(data->forks);
 	if (data->philos)

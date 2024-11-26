@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:48:52 by brsantsc          #+#    #+#             */
-/*   Updated: 2024/11/20 03:07:52 by brsantsc         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:48:39 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ void	*philos_routine(void *arg)
 		mutexes(philo);
 		if (philo->total_meals != -1
 			&& philo->meals_eaten >= philo->total_meals)
+		{
+			printf("Philo %d: finished eating %d meals\n", philo->id, philo->meals_eaten);
 			break ;
+		}
 	}
+	printf("Philo %d: exit routine\n", philo->id);
 	return (NULL);
 }
 
@@ -67,7 +71,7 @@ void	*monitoring_routine(void *arg)
 			printf("Philos ate %d times. Routine finished\n", data->must_eat);
 			break;
 		}
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }
@@ -79,10 +83,22 @@ int	all_philos_done(t_data *data)
 	i = 0;
 	while (i < data->nbr_of_philos)
 	{
-		if (data->philos[i].meals_eaten < data->must_eat)
+		pthread_mutex_lock(&data->philos[i].last_meal_mutex);
+		if (data->must_eat != -1 && data->philos[i].meals_eaten < data->must_eat)
+		{
+			if (!data->philos[i].notified)
+			{
+			printf("Monitor: Philo %d has not eaten enough (%d/%d)\n",
+					i + 1, data->philos[i].meals_eaten, data->must_eat);
+			data->philos[i].notified = 1;
+			}
+			pthread_mutex_unlock(&data->philos[i].last_meal_mutex);
 			return (0);
+		}
+		pthread_mutex_lock(&data->philos[i].last_meal_mutex);
 		i++;
 	}
+	printf("Monitor: All philos have eaten the required number of meals\n");
 	return (1);
 }
 
@@ -91,10 +107,6 @@ void	mutexes(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-//	pthread_mutex_lock(philo->left_fork);
-//	print_status(philo, "has taken a fork");
-//	pthread_mutex_lock(philo->right_fork);
-//	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal_time = current_time();
@@ -102,9 +114,10 @@ void	mutexes(void *arg)
 	usleep(philo->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->meals_eaten++;
-	pthread_mutex_unlock(&philo->last_meal_mutex);
+//	pthread_mutex_lock(&philo->last_meal_mutex);
+//	philo->meals_eaten++;
+//	pthread_mutex_unlock(&philo->last_meal_mutex);
 	print_status(philo, "is sleeping");
 	usleep(philo->time_to_sleep * 1000);
 }
