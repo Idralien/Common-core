@@ -1,5 +1,5 @@
 #ifndef CUBED_H
-#define CUBED_H
+# define CUBED_H
 
 # include "mlx.h"
 # include <stdlib.h>
@@ -11,10 +11,10 @@
 # include <string.h>
 
 //screen
-# define	SCREEN_WIDTH 800
-# define	SCREEN_HEIGHT 600
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 600
 
-// Keys 
+// Keys
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -28,22 +28,22 @@ typedef struct s_axis
 {
 	double	x;
 	double	y;
-} t_axis;
+}	t_axis;
 
 typedef struct s_player
 {
 	t_axis	pos;
 	t_axis	dir;
 	t_axis	plane; // camera plane
-} t_player;
+}	t_player;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*img;
 	int		*data;
 	int		width;
 	int		length;
-} t_texture;
+}	t_texture;
 
 typedef struct s_img
 {
@@ -60,19 +60,19 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
-	t_img			img;
-	t_player	player;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		pos_x;
-	double		pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			pos_x;
+	double			pos_y;
 	int				map[800][600];
 	unsigned int	floor_colour;
 	unsigned int	ceiling_colour;
-	t_texture	textures[4]; // NORTH, SOUTH, WEST, EAST
-} t_game;
+	t_texture		textures[4]; // NORTH, SOUTH, WEST, EAST
+	t_player		player;
+	t_img			img;
+}	t_game;
 
 // Movement
 void	move_player(t_game *game, int direction);
@@ -95,5 +95,5 @@ void	draw_pixel(t_game *game, int x, int y, int colour);
 // Utils
 void	cleanup_game(t_game *game);
 
-int	main(int argc, char **argv);
+int		main(int argc, char **argv);
 #endif

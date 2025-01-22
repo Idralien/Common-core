@@ -8,7 +8,7 @@ int	close_window(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
 	{
