@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:26:07 by brsantsc          #+#    #+#             */
-/*   Updated: 2025/02/14 11:21:45 by brsantsc         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:34:02 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int key_press(int keycode, t_game *game)
         game->player_x -= game->dir_x * MOVE_SPEED;
         game->player_y -= game->dir_y * MOVE_SPEED;
     }
-    if (keycode == KEY_A)
+    if (keycode == KEY_D)
     {
         double old_dir_x = game->dir_x;
         game->dir_x = game->dir_x * cos(-ROTATE_SPEED) - game->dir_y * sin(-ROTATE_SPEED);
         game->dir_y = old_dir_x * sin(-ROTATE_SPEED) + game->dir_y * cos(-ROTATE_SPEED);
     }
-    if (keycode == KEY_D)
+    if (keycode == KEY_A)
     {
         double old_dir_x = game->dir_x;
         game->dir_x = game->dir_x * cos(ROTATE_SPEED) - game->dir_y * sin(ROTATE_SPEED);

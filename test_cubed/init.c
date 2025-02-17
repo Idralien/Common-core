@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:25:12 by brsantsc          #+#    #+#             */
-/*   Updated: 2025/02/14 01:37:23 by brsantsc         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:30:18 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void init_game(t_game *game)
     init_image(game); // Initialize the image buffer
 
     // Set player start position and direction
-    game->player_x = 2.0;
-    game->player_y = 2.0;
+    game->player_x = 2.5;
+    game->player_y = 2.5;
     game->dir_x = -1;
     game->dir_y = 0;
     game->plane_x = 0;
@@ -51,11 +51,11 @@ void init_game(t_game *game)
 
     // Define a simple test map (walls = '1', empty space = '0')
     static char *map[] = {
-        "111111",
-        "100001",
-        "100001",
-        "100001",
-        "111111",
+        "11111",
+        "10001",
+        "10101",
+        "10001",
+        "11111",
         NULL
     };
     game->map = map;

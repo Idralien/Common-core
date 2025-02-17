@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:53:03 by brsantsc          #+#    #+#             */
-/*   Updated: 2025/02/14 11:23:01 by brsantsc         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:51:05 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,17 @@ void render_frame(t_game *game);
 void    init_image(t_game *game);
 void    init_game(t_game *game);
 
+void    parse_cub_file(char *filename, t_game *game);
+void    parse_texture(char *line, t_game *game);
+void    parse_color(char *line, t_game *game);
+void    parse_map(char *line, t_game *game);
+void    validate_map(t_game *game);
+int     is_texture_line(char *line);
+int     is_color_line(char *line);
+int     is_map_line(char *line);
+int     is_empty_line(char *line);
+
+int ft_atoi(const char *str);
+int ft_strcmp(char *str1, char *str2);
+char    **ft_split(char const *s, char c);
 #endif
