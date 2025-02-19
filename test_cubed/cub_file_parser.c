@@ -6,35 +6,66 @@
 /*   By: brsantsc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 09:59:24 by brsantsc          #+#    #+#             */
-/*   Updated: 2025/02/17 10:35:43 by brsantsc         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:03:23 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-// Function to parse the .cub file
-void parse_cub_file(char *filename, t_game *game)
+char *read_file_to_string(const char *filename)
 {
-    int fd;
-    char *line;
-    
-    fd = open(filename, O_RDONLY);
+    int fd = open(filename, O_RDONLY);
     if (fd < 0)
         error_exit("Error: Could not open .cub file");
-    
-    while ((line = get_next_line(fd)))
+
+    char buffer[BUFFER_SIZE + 1];
+    char *content = NULL;
+    char *temp;
+    int bytes_read;
+
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
     {
-        if (is_texture_line(line))
-            parse_texture(line, game);
-        else if (is_color_line(line))
-            parse_color(line, game);
-        else if (is_map_line(line))
-            parse_map(line, game);
-        else if (!is_empty_line(line))
-            error_exit("Error: Invalid line in .cub file");
-        free(line);
+        buffer[bytes_read] = '\0';
+        temp = ft_strjoin(content, buffer);  // Append new data
+        free(content);
+        content = temp;
     }
     close(fd);
+
+    if (!content)
+        error_exit("Error: File is empty or could not be read");
+
+    return content;
+}
+
+// Parses the .cub file into the game struct
+void parse_cub_file(char *filename, t_game *game)
+{
+    char *file_content = read_file_to_string(filename);
+    char **lines = ft_split(file_content, '\n'); // Split into lines
+    free(file_content); // Free the full file content after splitting
+
+    if (!lines)
+        error_exit("Error: Failed to split file content");
+
+    if (!game->map || !game->map[0])
+    error_exit("Error: Map is not initialized correctly");
+
+    for (int i = 0; lines[i]; i++)
+    {
+        if (is_texture_line(lines[i]))
+            parse_texture(lines[i], game);
+        else if (is_color_line(lines[i]))
+            parse_color(lines[i], game);
+        else if (is_map_line(lines[i]))
+            parse_map(lines[i], game);
+        else if (!is_empty_line(lines[i]))
+            error_exit("Error: Invalid line in .cub file");
+
+        free(lines[i]); // Free each line after processing
+    }
+    free(lines); // Free the array of lines
+
     validate_map(game);
 }
 
@@ -57,7 +88,7 @@ void parse_texture(char *line, t_game *game)
     else
         error_exit("Error: Invalid texture identifier");
     
-    free_split(split);
+    fsplit(split);
 }
 
 // Function to parse floor and ceiling colors
@@ -87,8 +118,8 @@ void parse_color(char *line, t_game *game)
     else
         error_exit("Error: Invalid color identifier");
     
-    free_split(rgb);
-    free_split(split);
+    fsplit(rgb);
+    fsplit(split);
 }
 
 // Function to parse map
@@ -143,3 +174,65 @@ int is_empty_line(char *line)
     return 1;
 }
 
+char **append_to_map(char **map, char *line)
+{
+    int i = 0;
+
+    if (!game->map || !game->map[0])
+        error_exit("Error: Map is not initialized correctly");
+    while (map && map[i])
+        i++;
+
+    char **new_map = malloc(sizeof(char *) * (i + 2)); // Extra space for new line + NULL
+    if (!new_map)
+        error_exit("Error: Memory allocation failed");
+
+    for (int j = 0; j < i; j++)
+        new_map[j] = map[j]; // Copy old map
+
+    new_map[i] = ft_strdup(line); // Add new line
+    new_map[i + 1] = NULL; // Null-terminate the array
+
+    free(map); // Free old map
+    return new_map;
+}
+
+int is_map_closed(char **map)
+{
+    int i, j;
+
+    if (!map)
+        return (0);
+
+    for (i = 0; map[i]; i++)
+        ;
+    // Check first and last row for any gaps
+    for (j = 0; map[0][j]; j++)
+        if (map[0][j] != '1' && map[0][j] != ' ')
+            return (0);
+    for (j = 0; map[i - 1][j]; j++)
+        if (map[i - 1][j] != '1' && map[i - 1][j] != ' ')
+            return (0);
+
+    // Check first and last column, and ensure walls enclose open spaces
+    for (i = 0; map[i]; i++)
+    {
+        if (map[i][0] != '1' && map[i][0] != ' ')
+            return (0);
+        for (j = 0; map[i][j]; j++)
+        {
+            if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S' ||
+                map[i][j] == 'E' || map[i][j] == 'W')
+            {
+                // Ensure surrounding tiles are not spaces (indicating gaps)
+                if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1] ||
+                    map[i - 1][j] == ' ' || map[i + 1][j] == ' ' ||
+                    map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+                    return (0);
+            }
+        }
+        if (map[i][j - 1] != '1' && map[i][j - 1] != ' ')
+            return (0);
+    }
+    return (1);
+}

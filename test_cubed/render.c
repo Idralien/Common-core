@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:00:34 by brsantsc          #+#    #+#             */
-/*   Updated: 2025/02/16 23:48:39 by brsantsc         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:00:50 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ void render_rays(t_game *game)
                 side = 1;
             }
             if (game->map[map_y][map_x] == '1') hit = 1;
+            printf("Debug: Checking render_rays variables...\n");
+            printf("game->player.x = %f, game->player.y = %f\n", game->player.x, game->player.y);
+            printf("game->map = %p\n", game->map);
         }
 
         printf("Ray %d hit wall at (%d, %d)\n", x, map_x, map_y);
@@ -127,6 +130,8 @@ void render_frame(t_game *game)
     fill_background(game);
 
     printf("Calling render_rays...\n");
+    if(!game->map)
+        error_exit("Error: game->map is NULL before rendering");
     render_rays(game);
     printf("render_rays finished!\n");
 

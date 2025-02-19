@@ -6,7 +6,7 @@
 /*   By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:25:12 by brsantsc          #+#    #+#             */
-/*   Updated: 2025/02/17 09:30:18 by brsantsc         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:41:04 by brsantsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,4 @@ void init_game(t_game *game)
     }
 
     init_image(game); // Initialize the image buffer
-
-    // Set player start position and direction
-    game->player_x = 2.5;
-    game->player_y = 2.5;
-    game->dir_x = -1;
-    game->dir_y = 0;
-    game->plane_x = 0;
-    game->plane_y = 0.66;
-
-    // Set colors (example: sky blue and ground brown)
-    game->ceiling_color = 0x87CEEB;
-    game->floor_color = 0x8B4513;
-
-    // Define a simple test map (walls = '1', empty space = '0')
-    static char *map[] = {
-        "11111",
-        "10001",
-        "10101",
-        "10001",
-        "11111",
-        NULL
-    };
-    game->map = map;
 }

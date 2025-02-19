@@ -6,17 +6,19 @@
 #    By: brsantsc <brsantsc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 14:04:05 by brsantsc          #+#    #+#              #
-#    Updated: 2025/02/17 10:49:04 by brsantsc         ###   ########.fr        #
+#    Updated: 2025/02/19 11:53:25 by brsantsc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	cub3D
 CC			=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g -D BUFFER_SIZE=10000
 MLX			=	minilibx-linux
 LIB			=	-L $(MLX) -lmlx -L/usr/X11R6/lib -lXext -lX11 -lm
 
-SRCS		= main.c image.c keys.c player.c render.c init.c libft.c ft_split.c
+# Source files
+SRCS					= main.c image.c keys.c player.c render.c \
+								init.c libft.c ft_split.c utils.c
 
 OBJS		=	$(SRCS:.c=.o)
 
@@ -36,3 +38,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
